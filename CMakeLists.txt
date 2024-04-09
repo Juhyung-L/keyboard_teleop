@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(SDL2_keyboard_teleop)
+project(keyboard_teleop)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
