@@ -17,11 +17,11 @@ int main(int argc, char** argv) {
     auto node_ = rclcpp::Node::make_shared("keyboard_teleop");
     node_->declare_parameter("vx", 1.0);
     node_->declare_parameter("vtheta", 1.0);
-    node_->declare_parameter("twist_topic", rclcpp::ParameterValue("/cmd_vel"));
+    node_->declare_parameter("twist_topic", rclcpp::ParameterValue("cmd_vel"));
     
     std::string twist_topic;
     node_->get_parameter("twist_topic", twist_topic);
-    auto pub_ = node_->create_publisher<geometry_msgs::msg::Twist>(twist_topic, 10);
+    auto pub_ = node_->create_publisher<geometry_msgs::msg::Twist>(twist_topic, rclcpp::SystemDefaultsQoS());
     
     double vx;
     double vtheta;
@@ -51,7 +51,7 @@ int main(int argc, char** argv) {
         SDL_WINDOWPOS_UNDEFINED,       // initial y position
         100,                           // width, in pixels
         100,                           // height, in pixels
-        SDL_WINDOW_OPENGL              // flags
+        SDL_WINDOW_SHOWN               // flags
     );
 
     if(window == nullptr)
