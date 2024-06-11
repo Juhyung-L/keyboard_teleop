@@ -13,23 +13,23 @@ find_package(SDL2 REQUIRED)
 
 include_directories(include ${SDL2_INCLUDE_DIRS})
 
-add_executable(keyboard_teleop src/keyboard_teleop.cpp)
-ament_target_dependencies(keyboard_teleop rclcpp geometry_msgs)
-target_link_libraries(keyboard_teleop ${SDL2_LIBRARIES})
+add_executable(keyboard_teleop_diff src/keyboard_teleop_diff.cpp)
+ament_target_dependencies(keyboard_teleop_diff rclcpp geometry_msgs)
+target_link_libraries(keyboard_teleop_diff ${SDL2_LIBRARIES})
+
+add_executable(keyboard_teleop_omni src/keyboard_teleop_omni.cpp)
+ament_target_dependencies(keyboard_teleop_omni rclcpp geometry_msgs)
+target_link_libraries(keyboard_teleop_omni ${SDL2_LIBRARIES})
 
 install(TARGETS 
-  keyboard_teleop
-  DESTINATION lib/${PROJECT_NAME}
+  keyboard_teleop_diff
+  keyboard_teleop_omni
+  RUNTIME DESTINATION lib/${PROJECT_NAME}
 )
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
-  # the following line skips the linter which checks for copyrights
-  # comment the line when a copyright and license is added to all source files
   set(ament_cmake_copyright_FOUND TRUE)
-  # the following line skips cpplint (only works in a git repo)
-  # comment the line when this package is in a git repo and when
-  # a copyright and license is added to all source files
   set(ament_cmake_cpplint_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
 endif()
