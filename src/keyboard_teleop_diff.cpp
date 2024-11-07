@@ -16,7 +16,7 @@ int main(int argc, char** argv) {
 
     auto node_ = rclcpp::Node::make_shared("keyboard_teleop");
     node_->declare_parameter("vx", 1.0);
-    node_->declare_parameter("vtheta", 1.0);
+    node_->declare_parameter("vyaw", 1.0);
     node_->declare_parameter("twist_topic", rclcpp::ParameterValue("cmd_vel"));
     
     std::string twist_topic;
@@ -24,9 +24,9 @@ int main(int argc, char** argv) {
     auto pub_ = node_->create_publisher<geometry_msgs::msg::Twist>(twist_topic, rclcpp::SystemDefaultsQoS());
     
     double vx;
-    double vtheta;
+    double vyaw;
     node_->get_parameter("vx", vx);
-    node_->get_parameter("vtheta", vtheta);
+    node_->get_parameter("vyaw", vyaw);
 
     geometry_msgs::msg::Twist robot_vel;
     SDL_Event event;
@@ -77,13 +77,13 @@ int main(int argc, char** argv) {
                             robot_vel.linear.x = vx;
                             break;
                         case SDLK_a:
-                            robot_vel.angular.z = vtheta;
+                            robot_vel.angular.z = vyaw;
                             break;
                         case SDLK_s:
                             robot_vel.linear.x = -vx;
                             break;
                         case SDLK_d:
-                            robot_vel.angular.z = -vtheta;
+                            robot_vel.angular.z = -vyaw;
                             break;
                         default:
                             break;

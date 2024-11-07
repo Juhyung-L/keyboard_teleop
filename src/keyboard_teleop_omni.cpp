@@ -78,13 +78,13 @@ int main(int argc, char** argv) {
                             robot_vel.linear.x = vx;
                             break;
                         case SDLK_a:
-                            robot_vel.linear.y = vy;
+                            robot_vel.linear.y = -vy;
                             break;
                         case SDLK_s:
                             robot_vel.linear.x = -vx;
                             break;
                         case SDLK_d:
-                            robot_vel.linear.y = -vy;
+                            robot_vel.linear.y = vy;
                             break;
                         case SDLK_q:
                             robot_vel.angular.z = vtheta;
@@ -105,7 +105,7 @@ int main(int argc, char** argv) {
                                 robot_vel.linear.x = 0.0;
                             break;
                         case SDLK_a:
-                            if(robot_vel.linear.y > 0.0)
+                            if(robot_vel.linear.y < 0.0)
                                 robot_vel.linear.y = 0.0;
                             break;
                         case SDLK_s:
@@ -113,7 +113,7 @@ int main(int argc, char** argv) {
                                 robot_vel.linear.x = 0.0;
                             break;
                         case SDLK_d:
-                            if(robot_vel.linear.y < 0.0)
+                            if(robot_vel.linear.y > 0.0)
                                 robot_vel.linear.y = 0.0;
                             break;
                         case SDLK_q:
